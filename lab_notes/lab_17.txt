@@ -1,0 +1,15 @@
+10.0.0.0/26
+Vlan 10
+last usable .62
+broadcast .63
+
+10.0.0.64/26
+Vlan 20
+Last Usable .126
+Broadcast .127
+
+10.0.0.128/26
+Vlan 30
+Last Usable .190
+broadcast .191
+

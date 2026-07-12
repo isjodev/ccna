@@ -25,6 +25,24 @@
 - ip route (ip-address) (netmask) (exit-interface) (next-hop)
 - ip route 0.0.0.0 0.0.0.0 (next-hop-interface)
 - ip route 0.0.0.0 0.0.0.0 10.1.1.255 [default broadcast address]
+- show vlan brief
+- show mac-address table
+- vlan (n)
+- name (name)
+- shutdown
+- interface range g1/0 - 1
+- switchport mode access
+- switchport access vlan (n)
+- switchport trunk encapsulation dot1q
+- switchport mode trunk
+- switchport trunk allowed vlan (add, all, except, none, remove) (n, n, n...)
+- show interfaces trunk (show vlan brief does not show trunk ports)
+- switchport trunk allowed vlan except (n, n,..) #includes ranges
+- switchport trunk native vlan 1001 (use unused vlan)
+- switchport trunk allowed vlan all (return to default state)
+- interface g0/0.10 (interface.vlan-tag)
+- encapsulation dot1q 10
+- ip address (ip-address) (subnet mask)
 * Day One - Networking Devices
 ** What is a network.
 - A network is a digital telecommunications network that allows nodes to share resources.
@@ -904,6 +922,65 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 - SW(config-if-range)#switchport mode access ## sets interface as access port.
 - SW1(config)#vlan 10 (creates vlan)
   - SW1(config-vlan)#name (creates name)
+- VLAN 1002-1005 exist by defaults and cannot be deleted.
+- Use the "interface range" command to select all the interfaces at once.
+- Use the switchport mode access command to set the interface as an access port.
 **** Access Port
-- Switchport which belongs to a single VLAN, and usually connects to end hosts list PC.s
+- Switchport which belongs to a single VLAN, and usually connects to end hosts.
 - Switchports which carry multiple VLANs are called Trunk Ports.
+* Day Seventeen - VLANs Part 2
+- In a network with few VLANs it is possible to use a separate interface for
+  each VLAN when connecting switches to switches and switches to routers.
+- However, when the number of VLANs increases, this is not viable. It will
+  result in wasted interfaces and often routers wont have enough interfaces for
+  each vlan.
+- You use trunk ports to carry traffic from multiple vlans over a single
+  interface.
+- A switch will tag all frames that they send over a trunk link.
+- Trunk Port = "Tagged Port"
+** VLAN Tagging
+- There are two main trunk protocols:
+  - ISL (Inter-Switch Link)
+  - IEEE 802.1Q (also know as 'dot1q')
+- ISL is an old Cisco proprietary protocol creative before industry standard
+  IEEE 802.1Q
+- IEEE 802.1q is an industry standard protocol created by the IEEE.
+** VLAN Ranges
+- The range of VLANS (1-4094) is divided into two sections:
+  - Normal VLANs 1-1005
+  - Extended VLANS 1006 - 4094
+- Some older devices cannot used extended VLAN range, however it's safe to
+  expect that modern switches will support the extended VLAN Range.
+** Native VLAN
+- 802.1Q has a feature called native VLAN.
+- The native vlan is VLAN 1 by default on all trunk ports, however this can be
+  manually configured on each trunk port.
+- The switches does not add an 802.1q tag to frames in the native VLAN.
+- When a switch receives an untagged frame on a trunk port, it assumes the frame
+  belongs to the native VLAN. It's important that the native VLAN matches.
+** Trunk Configuration
+- Select interface #switchport trunk encapsulation dot1q #switchport mode runk
+- Many modern switches do not support Cisco ISL at all. They only support DOT1Q.
+  However, many switches that do support both have Trunk Ecapsulation of auto by
+  default. to manually congiure the  interface as a trunk port you must first
+  set the encapsulation to dot1q or isl. On switches that only support 801q this
+  is not necessary. After you set the encapsulation type  you can then configure
+  the interface as a trunk
+  - Select the interface to configure
+  - Use #switchport trunk encapsulation dot1q to set encapsulation mode
+  - Use #switchport mode trunk to manually configured interface to tunk
+** Router On A Stick (ROAS)
+- Used to route between multiple VLANs using a single interface on a router and
+  switch.
+- The switch interface is configured as a regular trunk.
+- The router interface is configured using sub-interfaces. You can configure the
+  VLAN tag and IP address on each sub-interface.
+- The router will behave as if frames arriving with a certain vlan tag have
+  arrived on the sub-interface configured within the vlan tag.
+- The router will tag frames sent out of each sub-interface with the vlan tag
+  configured on the subinterface
+- R1(Config)# interface g/0.10
+- R1(Config)# encapsulation dot1q 10
+- R1(Config)# ip address (ip-address) (netmask)
+* VLANS Part 3
+** Router On A Stick
