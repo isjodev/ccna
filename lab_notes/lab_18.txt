@@ -1,0 +1,54 @@
+All devices are preconfigured from the end of Day 17's lab (SW2 has been
+replaced with a multilayer switch): Hosts are in the correct VLANs.  SW1-SW2
+are connected via trunk.  R1-SW2 are connected via ROAS.
+
+1. Replace the ROAS configuration on R1-SW2 with a point-to-point Layer 3
+connection.  Use the IP addresses given in the network diagram.  Configure a
+default route on SW2, with R1's G0/0 interface as the next hop.
+
+R1
+- no interface (subinterface)
+- default interface (interface)
+- ip address (address) (subnet-mask)
+
+2. Configure SVIs on SW2, one for each VLAN.  Assign the last usable IP address
+of each subnet to the appropriate SVI.
+SW2
+- default interface (interface)
+- ip routing
+- interface (interface)
+- no switchport
+- ip address (address) (subnet-mask)
+- ip route 0.0.0.0 0.0.0.0 10.0.0.194
+- show ip route
+- interface vlan10
+- ip address (address) (subnet-mask)
+
+3. Test inter-VLAN connectivity by pinging between VLANs.
+
+4. Test connectivity to the Internet by pinging 1.1.1.1 (Routes have already
+been configured on R1 and the Internet router)
+
+Subnet Mask: 255.255.255.192
+Network Address: 10.0.0.0
+
+10.0.0.0/26
+Vlan 10
+last usable .62
+broadcast .63
+
+10.0.0.64/26
+Vlan 20
+Last Usable .126
+Broadcast .127
+
+10.0.0.128/26
+Vlan 30
+Last Usable .190
+broadcast .191
+
+point to point:
+10.0.0.192 255.255.255.252
+10.0.0.193 255.255.255.252
+10.0.0.194 255.255.255.252
+
