@@ -43,6 +43,13 @@
 - interface g0/0.10 (interface.vlan-tag)
 - encapsulation dot1q (vlan)
 - ip address (ip-address) (subnet mask)
+- no interface (subinterface)
+- default interface (interface)
+- ip routing (enables layer 3 routing on a switch)
+- no switchport (configures interface to layer 3 router port, can now assign ip)
+- ip route 0.0.0.0 0.0.0.0 (next-hop)
+- show interfaces status
+- interface (vlanN) (ip) (subnet-mask)
 * Subnetting Cheatsheets
 | CIDR |     SUBNET MASK |   WILDCARD MASK | # OF IP ADDRESSES | # OF USABLE IP ADDRESSES |
 |------+-----------------+-----------------+-------------------+--------------------------|
@@ -1080,3 +1087,36 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 - R1(Config)# ip address (ip-address) (netmask)
 * VLANS Part 3
 ** Router On A Stick
+- Native VLAN on a router
+- Wireshark analysis
+- Layer 3 Switching / Multilayer switching
+- DTP
+- VTP
+*** Native VLAN on a router (ROAS)
+- Native VLAN frames are untagged; increases bandwidth.
+- 2 methods of configuring native VLAN on router:
+  - Use command encapsulation dot1q (vlan-id) native on the router subinterface
+  - Configure the ip address for the native vlan on the routers physical
+    interface (encapsulation dot1q vlan-id command is not necessary)
+*** Layer 3 Swtich
+- Capable of both switching and routing
+- Layer 3 aware
+- Can assign IP addresses to interfaces, like a router.
+- Can configure router ports.
+- Can create virtual interfaces for each VLAN and assign IP addresses to those interfaces.
+- Can configure routes
+- Can be used for inter-vlan routing.
+*** Inter-VLAN routing via SVI
+- SVI (Switch Virtual Interfaces) are virtual interfaces you can assign IP
+  addresses to in a multilayer switch.
+- Configure each PC to use the SVI (Not the router) as their gateway address.
+- To send traffic to different subnets/VLANs, the PCs will send traffic to the
+  switch and the switch will route the traffic.
+*** Condition for SVI to be up/up
+- Vlan must exist on switch
+- If the vlan doesn't exist the switch will not automatically create it
+- switch must have at least one access port in the vlan in an up/up state,
+  and/or one trunk port that allows the vlan that is in the up/up state
+- vlan must not be shutdown
+- svi must not be shutdown (shutdown by default)
+* DTP/VTP
