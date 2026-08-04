@@ -135,36 +135,33 @@ value: 30 square: 900
 value: 31 square: 961
 value: 32 square: 1024
 
-* Day One - Networking Devices
+* Day 1 - Networking Devices
 ** What is a network.
 - A network is a digital telecommunications network that allows nodes to share resources.
 - Client: Device that accesses a service made available by a server.
 - Server: Device that provides functions or services for clients.
   - Note: The same device can be a client in some situations and a server in others.
 *** Switches (L2)
-- Provide connectivity to hosts within the same LAN.
-- Have many network interfaces for hosts to connect to.
-- Do not provide connectivity between LANs.
-- Ex: Cisco Catalyst 9200, Catalyst 3650.
+- Switches provide connectivity to hosts within the same LAN, have many
+  interfaces for hosts, and do not provide connectivity between LANs. Examples
+  include: Cisco Catalyst 9200 and Catalyst 3650.
 *** Routers (L3)
-- Have fewer network interfaces than switches.
-- Are used to provide connectivity between LANs.
-- Are used to send data over the internet.
-- Ex: Cisco ISR 1000, ISR 900, ISR 400.
+- Routers have fewer interfaces than switches and are used to provide
+  connectivity between LANs, and send data over the internet. Examples include:
+  Cisco ISR 1000, ISR 900, ISR 400.
 *** Firewalls
-- Specialty security devices that control traffic entering/exiting a network.
-- Can be placed inside or outside of a network.
-- Monitor and control traffic based on configured rules.
-- Are known as "Next-Generation Firewalls" when they include advanced filtering capabilities.
-- Host-Based firewalls are software applications that filter traffic entering
-  and exiting a host machine.
-- Ex: Cisco ASA (Adaptive Security Appliance)5500-X, Firepower 2100. (Both Next-Gen)
-* Day Two - Interfaces and Cables
+- Firewalls are security devices that control traffic entering and exiting a
+  network which can be placed inside or outside of a network to monitor and
+  control traffic based on configured rules. Next-Generation Firewalls include
+  advaced filtering capabilities. Host-Based firewalls are applications that
+  filter traffic entering and exiting a host machine. Examples include: Cisco
+  ASA 5500-X, Firepower 2100, both of which are next-generation.
+* Day 2 - Interfaces and Cables
 ** Ethernet
 - A collection of network standards and protocols, which provide common
   communication standards over network, and provide common hardware standards to
-  allow connectivity between devices.
-- Connections between devices operate at a set speed, measured in bits-per-second(bps).
+  allow connectivity between devices. Connections between devices operate at a
+  speed measured in bits-per-second.
     | Size           | # of Bits         |
     |----------------+-------------------|
     | 1 Kilobit (Kb) | 1,000             |
@@ -172,52 +169,43 @@ value: 32 square: 1024
     | 1 Gigabit (Gb) | 1,000,000,000     |
     | 1 Terabit (Tb) | 1,000,000,000,000 |
 *** Standards:
-- Defined in the IEEE 802.3 standard in 1983.
-- IEEE: Institute of Electrical and Electronics Engineers.
+- Ethernet was defined in the IEEE (Institute of Electrical and Electronics
+  Engineers) 802.3 standard in 1983.
  | Speed     | Common Name         | Standard | Cable Type | Max Tx Distance |
  |-----------+---------------------+----------+------------+-----------------|
  | 10 Mbps   | Ethernet            | 802.3i   | 10BASE-T   | 100m            |
  | 1000 Mbps | Fast Ethernet       | 802.3u   | 100BASE-T  | 100m            |
  | 1 Gbps    | Gigabit Ethernet    | 802.3ab  | 1000BASE-T | 100m            |
  | 10 Gbps   | 10 Gigabit Ethernet | 802.3an  | 10GBASE-T  | 100m            |
-- BASE: Baseband Signaling
-- T: Twisted Pair
 *** UTP Cables
-- Most ethernet uses copper cables.
-- UTP: Twists protect against EMI.
-- 10/100BASE-T uses two pairs, Cat3 and Cat5 respectively.
-- Cat5e pair use dependent on use case, Cat6 uses four pairs.
-- Full-Duplex allows for simultaneous Tx & Rx.
+- Unshielded Twisted Pair uses copper cables which are twisted to protect
+  against EMI. UTP types include Cat3, Cat5, Cat5e, Cat6, and Cat6a (shielded).
+  Part use for Cat5e is dependent upon use case, whereas Cat6 uses all four
+  pairs. Duplex and Half-Duplex communication types describe unidirectional and
+  bidirectional transmission with Full Duplex providing simultaneous
+  bidirectional communication.
 **** Connection Interfaces
 - Straight-through cables used to connect switches, PCs and switches.
-- Crossover-Cables are used to connect similar devices.
+  Crossover-Cables are used to connect similar devices. Most modern equipment
+  has AUTO MDI-X which automatically detects which pins their neighbor is
+  transmitting on and adjusts their receiver pins accordingly.
  | Device Type | Tx Pins | Rx Pins |
  |-------------+---------+---------|
  | Router      | 1/2     | 3/6     |
  | Firewall    | 1/2     | 3/6     |
  | PC          | 1/2     | 3/6     |
  | Switch      | 3/6     | 1/2     |
-- Most modern equipment has AUTO MDI-X which automatically detects which pins their neighbor is transmitting on and adjust their receiver pins accordingly.
-- Each wire pair is bi-directional.
 *** Fiber-Optic Cabling
-- Defined in IEEE 802.3ae
-- Uses SFP (Small Form-Factor Pluggable) to allow fiber-optic cables to connect
-  to switches/routers.
-- Four components of fiber-optic cable:
-  - Fiberglass core.
-  - Reflective cladding.
-  - Protective buffer.
-  - Outer jacket.
-**** Single-Mode
-- Narrower than multimode.
-- Light enters at slight angle (mode) from laser-based transmitter.
-- Allows for longer cable lengths than UTP and multi-mode fiber.
-- More expensive, due to higher cost of laser-based SFP transmitters.
-**** Multi-Mode
-- Core is wider than single-mode.
-- Allows multiple angles (modes) of light to enter core.
-- Allows for longer cable lengths than UTP but shorter than single-mode.
-- Cheaper than single-mode.
+- Fiber-Optic cabling was Defined in IEEE 802.3ae, and uses SFPs to connect
+  fiber-optic cables to switches and routers. The four components of a
+  fiber-optic cable are the: Fiberglass core, reflective cladding, protective
+  buffer, and outer jacket. Types of fiber-optic cable are single-mode, which is
+  narrower than multi-mode. Light enters at a slight angle, and allows for
+  longer cable lengths that UTP and multi-mode fiber, and tends to be more
+  expensize due to higher cost for laser-based SFP transmitters. The core of
+  multi-mode fiber is wider than in single-mode, allowing multiple angles of
+  light to enter the core simultaneously. Cable lengths are shorter with
+  multi-mode than for single-mode, and tends to be cheaper.
 **** Standards
 | Speed       | Standard | Connection Speed | Mode Support     | Max Tx Distance |
 |-------------+----------+------------------+------------------+-----------------|
@@ -225,73 +213,50 @@ value: 32 square: 1024
 | 10GBASE-SR  | 802.3ae  | 10 Gbps          | Multimode        | 400 Meters      |
 | 10GBASE-LR  | 802.3ae  | 10Gbps           | Single           | 10km            |
 | 10GBASE-ER  | 802.3ae  | 10Gbps           | Single           | 30km            |
-**** UTP vs Fiber
-***** UTP
-- Cheaper than fiber.
-- Shorter maximum distance.
-- Vulnerable to EMI.
-- RJ45 ports are cheaper than SFP.
-- Emit faint signal which can be copied.
-***** Fiber
-- Higher cost.
-- Longer maximum distance.
-- No vulnerablity to EMI.
-- SFP ports are more expensive. $Single-Mode > $Multi-Mode
-- Does not emit signal outside of cable.
-* Day Three - OSI Model and TCP/IP Suite
-** What is a networking model?
-- Networking models categorize and provide a structure for networking protocols and standards.
+* Day 3 - OSI Model and TCP/IP Suite
 ** OSI Model
-- Open Systems Interconnection Model.
-- Conceptual model taht categorizes and standardizes the different functions in a network.
-- Created by ISO.
-- Functions are divided into 7 Layers.
-- As data moves from the top layer downward the process is called "Encapsulation".
-- As data moves from the bottom latyer upward the process is called de-encapsulation.
-- When interactions occur on the same later, it is called same-layer interaction.
-*** Upper Laters (Application, Presentation, Session)
-- Network engineers don't usually work with the top 3 layers.
-- Applications developers work with the top layers of the OSI model to connect
-  their applications over networks.
-*** Mnemonic
-- All People Seem To Need Data Processing
+- The Open Systems Interconnection Model is a conceptual model that categorizes
+  and standardizes various functions in a network, in which functions are divide
+  into seven layers. Encapsulation is a description of the processes whereby
+  data is transformed as it moves up through layers in a network, with
+  de-encapsulation being the opposite. These layers are the Application,
+  Presentation, Session, Transport, Network, Data Link, and Physical. All People
+  Seem To Need Data Processing is a useful mnemonic device for remembering
+  these.
+*** Application, Presentation, Session
+- Network engineers do not typically work with the top three layers, whereas
+  application developers work with the top layers to connect their applications
+  over networks.
 *** Application
-- Layer closest to end user.
-- Interacts with software applications.
-- HTTP/HTTPS are Layer 7 protocols.
-- Functions include:
-  - Identifying communication partners.
-  - Syncronizing communication.
+- The Application Layer is the layer closest to the end user and allows for
+  interactions with and between software applications, with functions including
+  the identification of communication partners and the syncronization of
+  communications.
 *** Presentation
-- Translates data to the appropriate format (between Application and Network formats).
+- The Presentation Layer translates data to the appropriate format.
 *** Session
-- Controls sessions between communicating hosts.
-- Establishes, manages, and terminates connections between local application and
-  remote application.
+- The Session Layer controls sessions between communicating hosts, and
+  establishes, manages, and terminates connections between local and remote
+  applications.
 *** Transport
-- Segments and reassembles data for communication between end hosts.
-- Breaks large pieces of data into smaller segments which can be more easily sent over the network and are less likely to cause transmission problems if errors occur.
-- Provides Host-To-Host communication.
-- When Data from Layer 7-5 arrives, it receives a Layer 4 header in the Transport layer.
-- << Data + L4 Header >> (Segment)
+- The Transport Layer segments data into smaller segments which can be more
+  easily sent over a network and are less likely to cause transmission problems
+  if errors occur. When data from Layers 7 to 5 arrive, they receive a Layer 4
+  header, creating a data protocol unit called a Segment, which consists of the
+  data and the Layer 4 header.
 *** Network
-- Provides connectivity between hosts on different networks (ie: outside of a LAN).
-- Provides logical addressing (IP Addresses).
-- Provides path selection between source and destination.
-- Routers operate at Layer 3.
-- When Data and the Layer 4 header arrive in the network layer, it receives a Layer 3 header.
-- << Data + L4 Header + L3 Header >> (Packet)
+- The Network Layer provides connectivity between hosts on different network
+  with logical addressing and path selection between source and destination.
+  When a segment arrives at the Network Layer it receives a Layer 3 header,
+  creating a PDU known as a packet.
 *** Data Link
-- Provides Node-To-Node connectivity and data transfer.
-- Defines how data is formatted for transmission over physical medium.
-- Detects and possibly corrects Layer 1 (Physical) errors.
-- Uses L2 Addressing.
-- Switches operate at L2.
-- <<L2 Trailer + Data + L4 Header + L2 Header >> (Frame)
+- The Data Link Layer uses Level 2 addressing and provides data transfer,
+  node-to-node connectivity, defines how data is formatted for physical
+  transmission, and detects and possibly corrects Layer 1 errors.
 *** Physical
-- Defines physical characteristics of the medium used to transfer data between devices; Voltage levels, maximum transmission distances, physical connectors, cable specs.
-- Digital bits are converted into electrical or radio signals.
-- All of the information in section 2 is related to the Physical Layer.
+- Defines physical characteristics of the medium used to transfer data between
+  devices; Voltage levels, maximum transmission distances, physical connectors,
+  cable specs. Digital bits are converted into electrical or radio signals.
 *** Protocol Data Units (PDU)
 | OSI Layer # | PDU Name | Protocol Data Added    |
 |-------------+----------+------------------------|
@@ -300,15 +265,12 @@ value: 32 square: 1024
 |           3 | Packet   | Layer 3 Header         |
 |           2 | Frame    | Layer 2 Trailer/Header |
 |           1 | Bit      | 0/1 Transmission       |
-- << L2 Trailer + Data + L4 Header + L3 Header + L2 Header >>
 ** TCP/IP Suite
-- Conceptual model and set of communication protocols used on the inernet and other networks.
-- Known as TCP/IP for the foundation protocols of the suite.
-- Developed by U.S.D.O.D. through DARPA.
-- Similar structure to OSI model, with fewer layers.
-- Model most commonly used in modern networks.
-- Application, Transport, Internet, Link.
-* Day Four - Introduction To CLI
+- The TCP/IP Suite, developed by the USDOD through DARPA is a simpler conceptual
+  model named for the foundational protocols in the suite. It is the model most
+  commonly used in modern networks, with a similar structure to the OSI model,
+  but with fewer layers. Application, Transport, Internet, Link.
+* Day 4 - Introduction To CLI
 ** What is a CLI?
 - Command Link Interface
 - Interface used to configure Cisco devices.
@@ -389,7 +351,7 @@ value: 32 square: 1024
 - Router(config)#write # saves config
 - Router(config)#write memory # saves config
 - Router(config)#copy running-config startup-config # Saves config.
-* Day Five - Ethernet LAN Switching (Part 1)
+* Day 5 - Ethernet LAN Switching (Part 1)
 ** Data Link (L2)
 - Provides node-to-node connectivity and data transfer (PC to switch, switch to
   router, router to router).
@@ -446,7 +408,7 @@ value: 32 square: 1024
 - When a destination MAC address is recognized by an entry in the MAC table, the frame is
   forwarded to the destination.
 - Dynamic MAC addresses are removed from the MAC table after 5 minutes of inactivity.
-* Day Six - Ethernet LAN Switching (Part 2)
+* Day 6 - Ethernet LAN Switching (Part 2)
 ** Header Frames
 - Minumum size for an Ethernet Frame (Header + Packet + Trailer) is 64 bytes.
 - If the payload is less than 46 bytes, padding bytes are added.
@@ -488,7 +450,7 @@ value: 32 square: 1024
 - SW1# show mac address-table
 - SW1# clear mac address-table dynamic
 - SW1# clear mac address-table dynamic interface
-* Day Seven - IPv4 Addressing (Part 1)
+* Day 7 - IPv4 Addressing (Part 1)
 ** OSI Model - Network Layer (L3)
 - Provides connectivity between hosts on different networks.
 - Provides logical (IP) addressing.
@@ -510,7 +472,7 @@ value: 32 square: 1024
 - IP address are the dotted decimal conversion of binary numbers.
 - 192.168.1.254/24
   - /24 means the first 24 bits represent the network portion of the address.
-* Day Eight - IPv4 Addressing (Part 2)
+* Day 8 - IPv4 Addressing (Part 2)
 ** Maximum Hosts Per Network
 *** Class C Network
 - 192.168.1.0/24 (Gives a range of 0 -> 255)
@@ -559,7 +521,7 @@ value: 32 square: 1024
   - Shows layer 1 and layer 2 information about interface.
   - MAC Address
   - IP Address
-* Day Nine - Switch Interfaces
+* Day 9 - Switch Interfaces
 ** Cisco CLI for Switches
 - SW1>enable // Enter privileged exec  mode.
 - SW#show ip interface brief
@@ -628,7 +590,7 @@ value: 32 square: 1024
 - CRC: Frames that have an inforrect format.
 - Input Errors: Total of various counters.
 - Output Errors: Frames the switch tried to send, but failed due to an error.
-* Day Ten - IPv4 Header
+* Day 10 - IPv4 Header
 ** IPv4 Header
 - Used at L3 to help send data between devices on separate networks.
 - This is known as routing.
@@ -733,7 +695,7 @@ value: 32 square: 1024
 - Length is 0-320 bits
 - Optional / Rarely used.
 - If the IHL field is greater than 5, it means Options are present.
-* Day Eleven - Routing Fundamentals
+* Day 11 - Routing Fundamentals
 ** Routing Fundamentals
 *** What is Routing?
 - Routing is the process that routers use to determine the path that IP packets
@@ -790,9 +752,9 @@ value: 32 square: 1024
 - R1(config)# ip route (destination address) (netmask) (next-hop)
 - R1(config)# ip route (destination address) (netmask) (exit-interface)
 - R1(config)# ip route (destination address) (netmask) (exit-interface) (next-hop)
-* Day Twelve - Life Of A Packet
+* Day 12 - Life Of A Packet
 - Simulation Video.
-* Day Thirteen - Subnetting Part 1
+* Day 13 - Subnetting Part 1
 ** IP Address Classes
 | Class | First Octet (binary) | First Octet Range (decimal) |
 |-------+----------------------+-----------------------------|
@@ -852,7 +814,7 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
      6. IP Address before Broadcast IP is Last Host
      7. Group size is total # of IP Addresses
         - Don't forget to subtrack 2 for Usable
-* Day Fourteen - Subnetting Part 2
+* Day 14 - Subnetting Part 2
 - Subnetting Practice Questions (Class C)
 - Subnetting Class B Networks
 **
@@ -951,7 +913,7 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 | /29           |       8192 |       6 |
 | /31           |      32768 |    0(2) |
 | /32           |      65536 |    0(1) |
-* Day Fifteen - Subnetting Part 3
+* Day 15 - Subnetting Part 3
 - The process of subnetting Classes A, B, And C networks is identical.
 ** Subnetting Class A Networks
 - Given a 10.0.0.0/8 network, you must create 2000 subnets which will be
@@ -1003,7 +965,7 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 - LAN2: 64 Hosts
 - LAN3: 14 Hosts
 - LAN4: 9 Hosts
-* Day Sixteen - VLANs
+* Day 16 - VLANs
 - A LAN is a single broadcast domain.
 - A broadcast domain is the group of devices which will receive a broadcast
   frame (Destination MAC: FFFF.FFFF.FFFF) sent by any one of the members.
@@ -1031,7 +993,7 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 **** Access Port
 - Switchport which belongs to a single VLAN, and usually connects to end hosts.
 - Switchports which carry multiple VLANs are called Trunk Ports.
-* Day Seventeen - VLANs Part 2
+* Day 17 - VLANs Part 2
 - In a network with few VLANs it is possible to use a separate interface for
   each VLAN when connecting switches to switches and switches to routers.
 - However, when the number of VLANs increases, this is not viable. It will
@@ -1085,7 +1047,7 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 - R1(Config)# interface g/0.10
 - R1(Config)# encapsulation dot1q 10
 - R1(Config)# ip address (ip-address) (netmask)
-* Day Eighteen - VLANS Part 3
+* Day 18 - VLANS Part 3
 ** Router On A Stick
 - Native VLAN on a router
 - Wireshark analysis
@@ -1119,4 +1081,48 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
   and/or one trunk port that allows the vlan that is in the up/up state
 - vlan must not be shutdown
 - svi must not be shutdown (shutdown by default)
-* Day Nineteen - DTP/VTP
+* Day 19 - DTP/VTP
+* Day 20 - Spanning Tree Protocol (Part 1)
+* Day 21 - Spanning Tree Protocol (Part 2)
+* Day 22 - Rapid Spanning Tree Protocol
+* Day 23 - EtherChannel
+* Day 24 - Dynamic Routing
+* Day 25 RIP & EIGRP
+* Day 26 - OSPF (Part 1)
+* Day 27 - OSPT (Part 2)
+* Day 28 - OSPF (Part 3)
+* Day 29 - First Hop Redundancy Protcols
+* Day 30 - TCP & UDP
+* Day 31 - IPv6 (Part 1)
+* Day 32 - IPv6 (Part 2)
+* Day 33 - IPv6 (Part 3)
+* Day 34 - Standard ACLs
+* Day 35 - Extended ACLs
+* Day 36 - CDP & LLDP
+* Day 37 - NTP
+* Day 38 - DNS
+* Day 39 - DHCP
+* Day 40 - SNMP
+* Day 41 - Syslog
+* Day 42 - SSH
+* Day 43 - FTP & TFTP
+* Day 44 - NAT (Part 1)
+* Day 45 - NAT (Part 2)
+* Day 46 - QoS (Part 1)
+* Day 47 - Qos (Part 2)
+* Day 48 - Security Fundamentals
+* Day 49 - Port Security
+* Day 50 - DHCP Snooping
+* Day 51 - Dynamic Art Inspection
+* Day 52 - LAN Architectures
+* Day 53 - WAN Architectures
+* Day 54 - Virtualization & Cloud
+* Day 55 - Wireless Fundamentals
+* Day 56 - Wireless Architectures
+* Day 57 - Wireless Security
+* Day 58 - Wireless Configuration
+* Day 59 - Network Automation
+* Day 60 - JSON, XML, YAML
+* Day 61 - REST APIs
+* Day 62 - Software-Defined Networking
+* Day 63 - Ansible, Puppet, Chef
