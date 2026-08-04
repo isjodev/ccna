@@ -1085,7 +1085,7 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 - R1(Config)# interface g/0.10
 - R1(Config)# encapsulation dot1q 10
 - R1(Config)# ip address (ip-address) (netmask)
-* VLANS Part 3
+* Day Eighteen - VLANS Part 3
 ** Router On A Stick
 - Native VLAN on a router
 - Wireshark analysis
@@ -1119,4 +1119,4 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
   and/or one trunk port that allows the vlan that is in the up/up state
 - vlan must not be shutdown
 - svi must not be shutdown (shutdown by default)
-* DTP/VTP
+* Day Nineteen - DTP/VTP
