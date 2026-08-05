@@ -272,8 +272,8 @@ value: 32 square: 1024
   but with fewer layers. Application, Transport, Internet, Link.
 * Day 4 - Introduction To CLI
 ** What is a CLI?
-- Command Link Interface
-- Interface used to configure Cisco devices.
+- The Command Line Interface is the primary administrative interface used to
+  configure Cisco devices.
 *** How to connect to Cisco device?
 - Console Port.
 - Using a Rollover cable: DB9 serial to RJ45 or DB9 to USB.
@@ -285,7 +285,6 @@ value: 32 square: 1024
 - Parity: None.
 - Flow Control: None.
 ** CLI.
-- Supports tab completion.
 *** User Exec Mode:
 - Default mode when connected to CLI.
 - Prompt: (Hostname)>
@@ -325,7 +324,7 @@ value: 32 square: 1024
   - Router# show running-config
   - Router# show startup-config
 - To save running config file:
-  - Router# writer
+  - Router# write
   - Router# write memory
   - Router# copy running-config startup-config
 - To encrypt passwords:
@@ -1098,6 +1097,7 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 * Day 33 - IPv6 (Part 3)
 * Day 34 - Standard ACLs
 * Day 35 - Extended ACLs
+# Beinning of Volume 2
 * Day 36 - CDP & LLDP
 * Day 37 - NTP
 * Day 38 - DNS

@@ -1,3 +1,0 @@
-- Convert IPv4 address from decimal to binary and vice versa.
-- Convert between binary, decimal, and hexadecial.
-- Understand binary for IPv4 routing and Access Control Lists
