@@ -17,7 +17,8 @@ new information into, learn to carefully read documentation (unless you want to
 waste a day trying to compile some obscure astronomical simulation software for
 a unsupported architecture instead of just reading the first paragraph of the
 build instructions), and learn enough to know how little you know and where and
-how to look for the information you don't have.
+how to look for the information you don't have. Read K&R, it's some of the best
+technical writing I've ever read.
 
 Chiefly using Jeremys IT Lab CCNA course, with Manning Publications Acing The
 CCNA Exam books. Google-Fu.

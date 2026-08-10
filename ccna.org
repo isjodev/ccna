@@ -1081,7 +1081,95 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 - vlan must not be shutdown
 - svi must not be shutdown (shutdown by default)
 * Day 19 - DTP/VTP
+** DTP (Dynamic Trunking Protocol)
+- DTP allows switches to negotiate the status of their switchports without
+  manual configuration to be access or trunk ports. It is enabled by default on
+  all cisco switches. DTP should be disabled on all switchports, as manual
+  configuration is recommended for security purposes.
+- SW(config-if)# switchport mode dynamic?
+  - auto, desirable
+- Dynamic Desirable mode will actively try to create a trunk port between other
+  cisco switches. It will do so if connected to another switchport in the
+  following modes: switchport mode trunk, switchport mode dynamic desirable,
+  switchport mode dynamic auto.
+- If the other interface is set to "static access", it will be an access port.
+- Dynamic Auto will not actively try to form a trunk port with other switches,
+  uless the connected switch is actively trying to form a trunk. It will form a
+  trunk with a switchport in the following modes: switchport mode trunk,
+  switchport mode dynamic desirable.
+** VTP (VLAN Trunking Protocol)
+- In privilege exec mode
+  - show vtp status
+- Protocol for configuring VLANs on a central switch.
+- A server that other switches sync to (auto configured by connection).
+- Other switches (VTP clients) will syncronize their VLAN database to the server.
+- Designed for large networks with many VLANs and reduces manual configuration.
+- Rarely used. It is recommended that you do not use it.
+- Three VTP Versions:
+  - V1: Does not support extended vlan range 1006-4095.
+  - V2: Does not support extended vlan range 1006-4094. Supports token ring VLANs.
+  - V3: Supports extended VLAN range 1006-4094. Clients store VLAN database in NVRAM.
+- Three VTP Modes:
+  - Server
+  - Client
+  - Transparent
+- Cisco switches operate in VTP server mode by default.
+*** VTP Servers
+- Can add/modify/delete VLANs.
+- Store the VLAN database in NVRAM.
+- Increase Revision Number every time VLAN is added, modified, or deleted.
+- Advertises latest version of VLAN database on trunk interfaces.
+- VTP clients sync their VLAN database to it.
+- VTP servers also function as VTP clients, therefore a VTP server will
+  synchronize to another VTP server with a higher revision number.
 * Day 20 - Spanning Tree Protocol (Part 1)
+** Redundancy
+- Essential in modern network design because businesses expect constant uptime.
+  Redundancy can be achieved by eliminating single points of failure. Spanning
+  Tree Protocol allows the redirection of traffic if a network component fails.
+- Complications:
+  - Most PCs only have a single NIC.
+  - Broadcast Storms wherein a network becomes flooded with ARP requests.
+  - MAC Address Flapping: MAC Tables are updated each time a frame arrives from
+    a source address. When frames with the same MAC Address repeatedly arrive on
+    different interfaces, the switch is constantly updating the associated
+    interface in its MAC table. This is an example of a L2 loop.
+** STP
+- Solves L2 loops by blocking redundant ports, which is akin to disabling the
+  interface. Blocked interfaces act as backups that can enter a forwarding state
+  if an active interface fails. Interfaces in a blocking state only send or
+  receive bridge protocol data units. STP uses the term "bridge", an obsolete
+  networking technology - switch is the correct designation.
+- If changes occur in the network connections, traffic will adjust according to
+  STP algorithms, adjusting the network topology.
+- The STP algorithm determines whether a port should be forwarding or blocking,
+  creating a single path to and from each node in a network, preventing L2
+  loops.
+- Every two seconds and STP-enabled switche will send a "Hello BPDU" out of all
+  interfaces. When a switch receives a "Hello BPDU" it knows that the particular
+  interface is connected to another switch, and to therefore not use STP or send
+  a "Hello BPDU."
+- The Bridge ID field of Bridge Protocol Data Units is used by a switch to elect
+  root bridges for a network. The switch with the lowest Bridge ID becomes the
+  root bridge of a network. When a switch becomes the root bridge, all ports are
+  put into a forwarding state, becoming designated ports, and all other switches
+  in the topology must have a path to reach it.
+- Bridge Priority is compared first, with the MAC Addresses being compared if
+  there is a tie.
+- When a switch is powered on, it assumes it is the root bridge, and only
+  changes this position if it receives a BPDU with a lower bridge ID. Once the
+  topology has converged and agreed upon a root bridge, only the root bridge
+  will send BPDUs, which will be forwarded by other switches in the network.
+*** Steps
+- A switch is elected as the root bridge and all ports on the device are
+  designated forwarding ports.
+- Each remaining switch will select one interface to be its Root Port. The
+  selection order is calculated by the Lowest Root Cost, Lowest Neighbor Bridge
+  ID, and the Lowest Neighbor Port ID.
+- Each remaining collision domain will select one interface as a designation
+  port and a non-designated port. These ports are selected by the determining
+  the interface with the Lowest Root Cost, followed by the Lowest Bridge ID in
+  the event of a tie.
 * Day 21 - Spanning Tree Protocol (Part 2)
 * Day 22 - Rapid Spanning Tree Protocol
 * Day 23 - EtherChannel
@@ -1126,3 +1214,5 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
 * Day 61 - REST APIs
 * Day 62 - Software-Defined Networking
 * Day 63 - Ansible, Puppet, Chef
+
+Note: All em dashes in this document were human generated.
