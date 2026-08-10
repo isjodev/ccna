@@ -26,23 +26,23 @@ CCNA Exam books. Google-Fu.
 Other Resources:
 
 Man Pages
-- man7.org/linux/man-pages/index.html
+www.man7.org/linux/man-pages/index.html
 
 Arch Wiki
-- wiki.archlinux.org/title/Network_configuration
+www.wiki.archlinux.org/title/Network_configuration
 
 Beejs Guide to Network Programming
-- beej.us/guide/bgnet
+www.beej.us/guide/bgnet
 
 The Debian Administrator's Handbook
-- www.debian.org/doc/manuals/debian-handbook/index.en.html
+www.debian.org/doc/manuals/debian-handbook/index.en.html
 
 An Introduction to Computer Networks, Peter Dordal, Loyola University
-- intronetworks.cs.luc.edu/current2/html
+www.intronetworks.cs.luc.edu/current2/html
 
 GNS3 Documentation
 Note: PacketTracer is sufficient for CCNA studies. I wouldn't recommend using
 GNS3 unless you're already familiar and comfortable with the Gnu/Linux CLI,
 virtualization technologies, and have enough computational training to be
 dangerous.
-- docs.gns3.com/docs
+www.docs.gns3.com/docs
