@@ -1,55 +1,50 @@
 * Commands
-- enable: switches to privileged exec mode
-- configure terminal / conf t: enter global configuration mode
-- enable password (password): enables and encrypts crackable plain text passwords.
-- service password-encryption: encrypts current and future passwords without affecting enable secret.
-- enable secret: enables password for privileged exec mode.
-- show running-config
-- show startup-config
-- write
-- write memory
-- copy running-config startup-config
-- show ip interface brief
-- interface g0/0
-- no shutdown
-- description
-- show interface status
-- interface range f0/5 - 12
-- show interfaces
-- speed
-- duplex
-- ip address (address) (subnet mask)
-- show ip route
-- ip route (ip-address) (netmask) (next-hop)
-- ip route (ip-address) (netmask) (exit-interface)
-- ip route (ip-address) (netmask) (exit-interface) (next-hop)
-- ip route 0.0.0.0 0.0.0.0 (next-hop-interface)
-- ip route 0.0.0.0 0.0.0.0 10.1.1.255 [default broadcast address]
-- show vlan brief
-- show mac-address table
-- vlan (n)
-- name (name)
-- shutdown
-- interface range g1/0 - 1
-- switchport mode access
-- switchport access vlan (n)
-- switchport trunk encapsulation dot1q
-- switchport mode trunk (configures SW interface as trunk; must first have encapsulation)
-- switchport trunk allowed vlan (add, all, except, none, remove) (n, n, n...)
-- show interfaces trunk # verify trunk ports (show vlan brief does not show trunk ports)
-- switchport trunk allowed vlan except (n, n,..) #includes ranges
-- switchport trunk native vlan 1001 (use unused vlan)
-- switchport trunk allowed vlan all (return to default state)
-- interface g0/0.10 (interface.vlan-tag)
-- encapsulation dot1q (vlan)
-- ip address (ip-address) (subnet mask)
-- no interface (subinterface)
-- default interface (interface)
-- ip routing (enables layer 3 routing on a switch)
-- no switchport (configures interface to layer 3 router port, can now assign ip)
-- ip route 0.0.0.0 0.0.0.0 (next-hop)
-- show interfaces status
-- interface (vlanN) (ip) (subnet-mask)
+** IOS CLI
+- enable: Enter privileged EXEC mode.
+- disable: Return to user EXEC mode.
+- reload: Reboot the device.
+- show running-config: View the running-config.
+- show startup-config: View the startup-config.
+- write: Save device configuration.
+- write memory: Save device configuration.
+- copy running-config startup-config: Save device configuration.
+- write erase: Erase startup config.
+- erase startup-config: Erase startup config.
+- erase nvram: Erase startup config.
+- show (command) include (string): Limit show command to output lines that
+  include the specified string.
+- hostname (name): Set the devices hostname.
+- enable password (password): Configure an unhashed enable password.
+- enable secret (password): Configure a hashed enable secret.
+- service password-encryption: Encrypt passwords in the configuration with type
+  7 encryption.
+- exit: Return to the previous level in the IOS CLI hierarchy.
+- end: Return to privileged EXEC mode from any configuration mode.
+** Ethernet LAN Switching
+- show mac address-table: View the switches MAC address table.
+- clear mac address-table dynamic: Remove all dynamic MAC addresses.
+- clear mac address-table dynamic address (address): Remove the specified
+  dynamic MAC addres.
+- clear mac address-table dynamic interface (interface): Remove all dynamic MAC
+  addresses learned on the specified interface.
+- ping (ip-address): Ping the specified host (ICMP echo/reply).
+** IPv4 Addressing
+- show ip interface (interface): View detailed L3 information about interfaces.
+- show ip interface brief: View a concise summary of interface IP addresses and status.
+- interface (interface): Enter interface config mode for the specified interface.
+- ip address ip-address netmask: Set the interfaces IP Address/netmask.
+- [no] shutdown: Enable/disable the interface.
+** Router and Switch Interfaces
+-
+** Routing Fundamentals
+** VLANs
+** Dynamic Trunking Protocol and Vlan Trunking Protocol
+** Spanning Tree, Rapid Spanning Tree
+** EtherChannel
+** Dynamic Routing, OSPF
+** First Hop Redundancy Protocol
+** IPv6 Addressing and Routing
+** Standard and Extended Access Control Lists
 * Subnetting Cheatsheets
 | CIDR |     SUBNET MASK |   WILDCARD MASK | # OF IP ADDRESSES | # OF USABLE IP ADDRESSES |
 |------+-----------------+-----------------+-------------------+--------------------------|
@@ -1171,6 +1166,22 @@ d) If passing the Target IP reaches 256, increase the octect before it by one
   the interface with the Lowest Root Cost, followed by the Lowest Bridge ID in
   the event of a tie.
 * Day 21 - Spanning Tree Protocol (Part 2)
+** STP States
+- Root/Designated Ports remain stable in a forwarding state.
+- Non-Designated Ports remain stable in a blocking state.
+- List and Learning are transitional states passed when an interface is
+  activated, or when a blocking port must transition to a forwarding state to a
+  change in network topology.
+*** Blocking (Stable)
+- Non-designated ports are in a blocking state.
+- Interfaces in a blocking state are disabled to prevent loops, do not send/receive regular network traffic, do not forward STP BPDUs, or learn MAC Addresses.
+*** Listening (Transitional)
+- Interfaces with designated or root roles enter the listening state, which is fifteen seconds long by default as determined by the forward delay time.
+- Interfaces in a listening state do not send/receive regular network traffic, will only forward or receive STP BPDUs, and does not learn MAC Addresses from regular traffic arriving on an interface.
+*** Learning (Transitional)
+- Interfaces in a learning state do not send/receive regular network traffic, only send and receive STP BPDUs, and learn MAC Addresses from regular traffic arriving on an interface.
+*** Forwarding (Stable)
+- Root and designated ports in a forwarding state will operate as normal, sending and receiving regular network traffic, sending and receiving STP BPDUs, and learning MAC Addresses.
 * Day 22 - Rapid Spanning Tree Protocol
 * Day 23 - EtherChannel
 * Day 24 - Dynamic Routing
